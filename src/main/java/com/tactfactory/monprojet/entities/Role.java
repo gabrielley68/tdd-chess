@@ -3,6 +3,7 @@ package com.tactfactory.monprojet.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -13,7 +14,7 @@ public class Role extends BaseEntity {
 
   private String name;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   private final List<User> users = new ArrayList<User>();
 
   public String getName() {
