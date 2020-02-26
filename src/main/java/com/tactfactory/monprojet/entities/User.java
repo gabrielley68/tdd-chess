@@ -17,7 +17,7 @@ public class User extends BaseEntity {
   private String lastname;
   private String email;
 
-  @ManyToMany
+  @ManyToMany(targetEntity = Role.class, mappedBy="users")
   private final List<Role> roles = new ArrayList<Role>();
 
   @OneToMany
