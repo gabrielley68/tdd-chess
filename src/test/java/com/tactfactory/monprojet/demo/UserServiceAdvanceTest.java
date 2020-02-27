@@ -144,8 +144,9 @@ public class UserServiceAdvanceTest {
       article.setName("article" + i);
       article.setPrice(10f);
       user.getArticles().add(article);
-      service.save(user);
     }
+
+    service.save(user);
 
     long roleItems = roleRepository.count();
     long articleItems = articleRepository.count();
