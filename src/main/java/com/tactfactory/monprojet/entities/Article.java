@@ -1,5 +1,6 @@
 package com.tactfactory.monprojet.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,7 +12,7 @@ public class Article extends BaseEntity {
   private String name;
   private Float price;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   private User user;
 
   public String getName() {
