@@ -5,6 +5,9 @@ plugins {
     id 'eclipse'
     id 'jacoco'
     id 'checkstyle'
+    id "com.github.spotbugs" version "3.0.0"
+    id 'pmd'
+    id 'de.aaschmid.cpd' version '3.1'
 }
 
 group = 'com.tactfactory.monprojet'
@@ -19,11 +22,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
-    /* {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}*/
-    //testCompile group: 'org.junit', name: 'junit5-engine', version: '5.0.0-ALPHA'
-    //testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0'
 }
 
 test {
@@ -71,4 +69,43 @@ task checkstyleTest (type: Checkstyle, overwrite: true){
     }
     classpath = fileTree("$project.buildDir/classes/test/")
     configFile = file("${rootProject.rootDir}/checkstyle.xml")
+}
+
+task pmdMain(type: Pmd, overwrite: true) {
+    ignoreFailures = true
+    description 'Runs PMD inspection against Android sourcesets.'
+    group = 'Code Quality'
+    ruleSetFiles = files("${rootProject.rootDir}/pmd_rules.xml")
+    source = fileTree(javasRoot)
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = true
+        html.enabled = false
+    }
+}
+
+task pmdTest(type: Pmd, overwrite: true) {
+    ignoreFailures = true
+    description 'Runs PMD inspection against Android sourcesets.'
+    group = 'Code Quality'
+    ruleSetFiles = files("${rootProject.rootDir}/pmd_rules.xml")
+    source = fileTree(testJavaRoot)
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = true
+        html.enabled = false
+    }
+}
+
+cpdCheck {
+    reports {
+        text.enabled = true
+        xml.enabled = true
+    }
+    source = sourceSets.main.allJava // only java, groovy and scala classes in 'main' sourceSets
+    minimumTokenCount = 50
 }
