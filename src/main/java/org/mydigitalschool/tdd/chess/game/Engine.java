@@ -9,12 +9,21 @@ public class Engine {
 	private Player player1;
 	private Player player2;
 	
+	private Board board;
+	
 	public Engine() {
+		// Set starting time
 		this.startTime = LocalDateTime.now();
 		
+		// Initialize the players with their color
 		Color firstPlayerColor = Color.getRandomColor();
 		this.player1 = new Player(firstPlayerColor);
 		this.player2 = new Player(Color.getOtherColor(firstPlayerColor));
+		
+		this.board = new Board();
+
+		// Render the board on creation
+		System.out.print(board.toString());
 	}
 	
 	public LocalDateTime getStartTime() {
@@ -39,6 +48,14 @@ public class Engine {
 
 	public void setPlayer2(Player player2) {
 		this.player2 = player2;
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
 	}
 	
 }

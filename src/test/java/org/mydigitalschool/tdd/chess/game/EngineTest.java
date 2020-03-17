@@ -59,7 +59,8 @@ public class EngineTest {
 	@Test
 	public void displayBoardOnInit() {
 		Engine engine = new Engine();
-		assertEqual(engine.getBoard().render(), outContent.toString());
+		
+		assertEquals(engine.getBoard().toString(), outContent.toString());
 	}
 
 }
