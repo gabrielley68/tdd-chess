@@ -27,5 +27,17 @@ public class EngineTest {
 		Engine engine = new Engine();
 		assertNotEquals(engine.getPlayer1().getColor(), engine.getPlayer2().getColor());
 	}
+	
+
+	/**
+	 * Assert that the two players doesn't have the same color on creation
+	 * multiple times because of the randomness
+	 */
+	@Test
+	public void playerColorDifferentMultipleTimes() {
+		for (int i = 0; i < 10; i++) {
+			this.playerColorDifferent();
+		}
+	}
 
 }
