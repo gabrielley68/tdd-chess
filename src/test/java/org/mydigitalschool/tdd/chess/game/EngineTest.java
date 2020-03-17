@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.time.LocalDateTime;
 
 import org.junit.Test;
-import org.junit.
 
 public class EngineTest {
 	
@@ -23,6 +22,7 @@ public class EngineTest {
 	/**
 	 * Assert that two players doesn't have the same color on creation
 	 */
+	@Test
 	public void playerColorDifferent() {
 		Engine engine = new Engine();
 		assertNotEquals(engine.getPlayer1().getColor(), engine.getPlayer2().getColor());
