@@ -2,11 +2,28 @@ package org.mydigitalschool.tdd.chess.game;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class EngineTest {
+	
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final PrintStream originalOut = System.out;
+	
+	@Before
+	public void setUpStream() {
+		System.setOut(new PrintStream(outContent));
+	}
+	
+	@After
+	public void restoreStream() {
+		System.setOut(originalOut);
+	}
 	
 	/**
 	 * Assert that engine start_time is initialized on creation
@@ -27,7 +44,6 @@ public class EngineTest {
 		Engine engine = new Engine();
 		assertNotEquals(engine.getPlayer1().getColor(), engine.getPlayer2().getColor());
 	}
-	
 
 	/**
 	 * Assert that the two players doesn't have the same color on creation
@@ -38,6 +54,12 @@ public class EngineTest {
 		for (int i = 0; i < 10; i++) {
 			this.playerColorDifferent();
 		}
+	}
+	
+	@Test
+	public void displayBoardOnInit() {
+		Engine engine = new Engine();
+		assertEqual(engine.getBoard().render(), outContent.toString());
 	}
 
 }
