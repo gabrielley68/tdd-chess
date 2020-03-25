@@ -1,5 +1,7 @@
 package org.mydigitalschool.tdd.chess.game.pieces;
 
-public class Rook {
-
+public class Rook extends Piece {
+	public String toString() {
+		return "5";
+	}
 }
