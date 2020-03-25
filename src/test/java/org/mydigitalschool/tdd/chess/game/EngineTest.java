@@ -62,5 +62,6 @@ public class EngineTest {
 		
 		assertEquals(engine.getBoard().toString(), outContent.toString());
 	}
+	
 
 }

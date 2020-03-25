@@ -16,29 +16,48 @@ public class Board {
 	public void setPiece(int y, int x, Piece piece) throws OutOfBoardException {
 		try {
 			this.board[y][x] = piece;
+			piece.setyIdx(y);
+			piece.setxIdx(x);
 		} catch (IndexOutOfBoundsException error) {
 			throw new OutOfBoardException("Coordonn�es en dehors du tableau");
-		}	
+		}
+	}
+	
+	public void removePiece(int y, int x) throws OutOfBoardException {
+		try {
+			this.board[y][x] = null;
+		} catch (IndexOutOfBoundsException error) {
+			throw new OutOfBoardException("Coordonnées en dehors du tableau");
+		}
 	}
 	
 	public void initPieces(Player player1, Player player2) {
-		this.board[0] = new Piece[] { 
-			new Rook(), new Rider(), 
-			new Bishop(), new King(),
-			new Queen(), new Bishop(),
-			new Rider(), new Rook()
-		};
-		
-		this.board[7] = new Piece[] {
-			new Rook(), new Rider(),
-			new Bishop(), new Queen(),
-			new King(), new Bishop(),
-			new Rider(), new Rook()
-		};
-		
-		for (int x = 0; x < this.board[1].length; x++) {
-			this.board[1][x] = new Pawn();
-			this.board[6][x] = new Pawn();
+		try {
+			setPiece(0, 0, new Rook(player1));
+			setPiece(0, 1, new Rider(player1));
+			setPiece(0, 2, new Bishop(player1));
+			setPiece(0, 3, new King(player1));
+			setPiece(0, 4, new Queen(player1));
+			setPiece(0, 5, new Bishop(player1));
+			setPiece(0, 6, new Rider(player1));
+			setPiece(0, 7, new Rook(player1));
+			
+			setPiece(7, 0, new Rook(player2));
+			setPiece(7, 1, new Rider(player2));
+			setPiece(7, 2, new Bishop(player2));
+			setPiece(7, 3, new Queen(player2));
+			setPiece(7, 4, new King(player2));
+			setPiece(7, 5, new Bishop(player2));
+			setPiece(7, 6, new Rider(player2));
+			setPiece(7, 7, new Rook(player2));
+			
+			for (int x = 0; x < this.board[1].length; x++) {
+				setPiece(1, x, new Pawn(player1));
+				setPiece(6, x, new Pawn(player2));
+			}
+		} catch (OutOfBoardException e) {
+			System.err.println(e);
+			System.exit(1);
 		}
 	}
 	
@@ -66,6 +85,14 @@ public class Board {
 			lineRepresentation += " " + pawnRepresentation;
 		}
 		return lineRepresentation;
+	}
+	
+	public Piece getPiece(int y, int x) throws OutOfBoardException {
+		try {
+			return this.board[y][x];
+		} catch (IndexOutOfBoundsException e) {
+			throw new OutOfBoardException("Coordonnées en dehors du tableau");
+		}
 	}
 	
 	public Piece[][] getBoard(){
