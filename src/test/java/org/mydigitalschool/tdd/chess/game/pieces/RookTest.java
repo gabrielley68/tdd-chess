@@ -19,7 +19,11 @@ public class RookTest {
 	
 	@Test
 	public void testVerticalMovement() throws OutOfBoardException {
-		
+		Board board = new Board();
+		Piece rook = new Rook();
+		board.setPiece(5, 4, rook);
+		rook.isMovementPossible(5,4);
+		assertTrue(rook.isMovementPossible(5, 4));
 	}
 	
 	@Test
