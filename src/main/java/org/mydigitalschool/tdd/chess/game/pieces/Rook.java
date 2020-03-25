@@ -14,7 +14,7 @@ public class Rook extends Piece {
 		return "5";
 	}
 	
-	public boolean isMovementPossible(int x, int y) {
+	public boolean isMovementPossible(int y, int x) {
 		return true;
 	}
 }
