@@ -1,5 +1,5 @@
 package org.mydigitalschool.tdd.chess.game.pieces;
 
-public class Bishop {
+public class Bishop extends Piece {
 
 }

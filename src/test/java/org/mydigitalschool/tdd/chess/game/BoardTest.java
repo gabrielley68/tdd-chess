@@ -15,7 +15,7 @@ public class BoardTest {
 	}
 	
 	@Test(expected = OutOfBoardException.class)
-	public void testSetPieceOutsideBoard() {
+	public void testSetPieceOutsideBoard() throws OutOfBoardException {
 		Board board = new Board();
 		Piece pawn = new Pawn();
 		board.setPiece(-1, 12, pawn);
@@ -23,7 +23,7 @@ public class BoardTest {
 	
 	
 	@Test
-	public void testPieceOnChestBoard() {
+	public void testPieceOnChestBoard() throws OutOfBoardException {
 		Board board = new Board();
 		Piece pawn = new Pawn();
 		board.setPiece(2, 3, pawn);
