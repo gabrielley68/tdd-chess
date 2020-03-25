@@ -28,6 +28,10 @@ public class RookTest {
 	
 	@Test
 	public void testDiagonalMovement() throws OutOfBoardException {
-		
+		Board board = new Board();
+		Piece rook = new Rook();
+		board.setPiece(2, 3, rook);
+		rook.isMovementPossible(3,4);
+		assertFalse(rook.isMovementPossible(3, 4));
 	}
 }
