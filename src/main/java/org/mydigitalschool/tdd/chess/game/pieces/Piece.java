@@ -13,7 +13,7 @@ public abstract class Piece {
 		this.player = player;
 	}
 	
-	public abstract boolean isMovementPossible(int x, int y);
+	public abstract boolean isMovementPossible(int y, int x);
 	
 	public abstract String toString();
 	

@@ -13,17 +13,22 @@ public class RookTest {
 		Board board = new Board();
 		Piece rook = new Rook();
 		board.setPiece(2, 3, rook);
-		rook.isMovementPossible(2, 5);
 		assertTrue(rook.isMovementPossible(2, 5));
 	}
 	
-	@Test
 	public void testVerticalMovement() throws OutOfBoardException {
+		Piece rook = new Rook();
+		rook.setxIdx(2);
+		rook.setyIdx(3);
+		assertTrue(rook.isMovementPossible(5, 3));
+	}
+	
+	@Test
+	public void testSamePosition() throws OutOfBoardException {
 		Board board = new Board();
 		Piece rook = new Rook();
 		board.setPiece(5, 4, rook);
-		rook.isMovementPossible(5,4);
-		assertTrue(rook.isMovementPossible(5, 4));
+		assertFalse(rook.isMovementPossible(5, 4));
 	}
 	
 	@Test
@@ -31,7 +36,6 @@ public class RookTest {
 		Board board = new Board();
 		Piece rook = new Rook();
 		board.setPiece(2, 3, rook);
-		rook.isMovementPossible(3,4);
 		assertFalse(rook.isMovementPossible(3, 4));
 	}
 }

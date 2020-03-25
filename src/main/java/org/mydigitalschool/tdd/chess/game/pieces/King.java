@@ -15,6 +15,6 @@ public class King extends Piece {
 	}
 	
 	public boolean isMovementPossible(int x, int y) {
-		return true;
+		return Math.abs(this.getxIdx() - x) < 2 && Math.abs(this.getyIdx() - y) < 2;
 	}
 }
