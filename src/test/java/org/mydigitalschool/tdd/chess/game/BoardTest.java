@@ -8,9 +8,7 @@ import org.mydigitalschool.tdd.chess.game.pieces.Pawn;
 import static org.junit.Assert.*;
 
 public class BoardTest {
-	
-	String NEW_LINE = System.getProperty("line.separator");
-	
+		
 	@Test(expected = OutOfBoardException.class)
 	public void testSetPieceOutsideBoard() throws OutOfBoardException {
 		Board board = new Board();
@@ -23,26 +21,26 @@ public class BoardTest {
 	public void testPieceOnChestBoard() throws OutOfBoardException {
 		Board board = new Board();
 		Piece pawn = new Pawn();
-		board.setPiece(2, 3, pawn);
-		assertEquals(pawn, board.getBoard()[2][3]);
+		board.setPiece(3, 2, pawn);
+		assertEquals(pawn, board.getBoard()[3][2]);
 	}
 	
 	@Test
 	public void testDisplayEmptyBoard() {
 		Board board = new Board();
 		String expectedDisplay = String.join(
-			NEW_LINE, 
+			Board.NEW_LINE, 
 			"  A B C D E F G H",
-			"8               ",
-			"7               ",
-			"6               ",
-			"5               ",
-			"4               ",
-			"3               ",
-			"2               ",
-			"1               "
+			"8                ",
+			"7                ",
+			"6                ",
+			"5                ",
+			"4                ",
+			"3                ",
+			"2                ",
+			"1                "
 		);
-		
+			
 		assertEquals(expectedDisplay, board.toString());
 	}
 }
