@@ -28,10 +28,11 @@ public class Engine {
 		board.initPieces(this.player1, this.player2);
 
 		// Render the board on creation
-		System.out.println(board.toString());
+		System.out.print(board.toString());
 	}
 	
 	public void play() {
+		System.out.println();
 		Scanner in = new Scanner(System.in);
 		boolean won = false;
 		Player currentPlayer = this.player1.getColor() == Color.WHITE ? this.player1 : this.player2;
