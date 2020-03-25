@@ -14,7 +14,9 @@ public class Rook extends Piece {
 		return "5";
 	}
 	
-	public boolean isMovementPossible(int x, int y) {
-		return true;
+	public boolean isMovementPossible(int y, int x) {
+		System.out.println(this.getxIdx());
+		System.out.println(this.getyIdx());
+		return this.getyIdx() == y ^ this.getxIdx() == x;
 	}
 }
