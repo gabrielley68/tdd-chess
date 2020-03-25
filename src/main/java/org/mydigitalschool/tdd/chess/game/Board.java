@@ -1,6 +1,6 @@
 package org.mydigitalschool.tdd.chess.game;
 
-import org.mydigitalschool.tdd.chess.game.pieces.Piece;
+import org.mydigitalschool.tdd.chess.game.pieces.*;
 
 //Test
 public class Board {
@@ -21,6 +21,27 @@ public class Board {
 		}	
 	}
 	
+	public void initPieces(Player player1, Player player2) {
+		this.board[0] = new Piece[] { 
+			new Rook(), new Rider(), 
+			new Bishop(), new King(),
+			new Queen(), new Bishop(),
+			new Rider(), new Rook()
+		};
+		
+		this.board[7] = new Piece[] {
+			new Rook(), new Rider(),
+			new Bishop(), new Queen(),
+			new King(), new Bishop(),
+			new Rider(), new Rook()
+		};
+		
+		for (int x = 0; x < this.board[1].length; x++) {
+			this.board[1][x] = new Pawn();
+			this.board[6][x] = new Pawn();
+		}
+	}
+	
 	public String toString() {
 		// First line
 		String representation = "  A B C D E F G H" + NEW_LINE;
@@ -31,7 +52,6 @@ public class Board {
 				representation += NEW_LINE;
 			}
 		}
-		// System.out.println(representation);
 		return representation;
 	}
 	
@@ -41,7 +61,7 @@ public class Board {
 		for (int x = 0; x < this.board[y].length; x++) {
 			String pawnRepresentation = " ";
 			if (this.board[y][x] != null) {
-				pawnRepresentation += this.board[y][x].toString();
+				pawnRepresentation = this.board[y][x].toString();
 			}
 			lineRepresentation += " " + pawnRepresentation;
 		}
