@@ -45,6 +45,7 @@ public class Engine {
 			while (selectedPiece == null) {
 				System.out.println("Indiquer la ligne de la pièce à déplacer");
 				int y = in.nextInt();
+				
 				System.out.println("Indiquer la colonne de la pièce à déplacer");
 				int x = in.nextInt();
 				
@@ -54,7 +55,7 @@ public class Engine {
 						System.out.println("Il n'y a pas de pièce à cet emplacement");
 					}
 					
-					if (selectedPiece.getPlayer() != currentPlayer) {
+					else if(selectedPiece.getPlayer() != currentPlayer) {
 						System.out.println("Cette pièce n'est pas à vous");
 						selectedPiece = null;
 					}
@@ -74,12 +75,13 @@ public class Engine {
 					int oldY = selectedPiece.getyIdx();
 					int oldX = selectedPiece.getxIdx();
 					try {
-						if (this.board.getPiece(y, x).getClass() == King.class) {
+						Piece eatenPiece = this.board.getPiece(y, x);
+						if (eatenPiece != null && eatenPiece.getClass() == King.class) {
 							won = true;
-							System.out.println("Le joueur des " + currentColor + " a gagné !!!");
 						}
 						this.board.setPiece(y, x, selectedPiece);
 						this.board.removePiece(oldY, oldX);
+						moved = true;
 					} catch (OutOfBoardException e) {
 						System.out.println(e);
 					}
@@ -87,10 +89,13 @@ public class Engine {
 					System.out.println("Mouvement impossible pour ce type de pièce");
 				}
 			}
+			if (won == false) {
+				currentPlayer = currentPlayer == player1 ? player2 : player1;
+			}
 			System.out.println(board.toString());
 		}
 		in.close();
-
+		System.exit(0);
 	}
 	
 	public LocalDateTime getStartTime() {
