@@ -43,4 +43,27 @@ public class BoardTest {
 			
 		assertEquals(expectedDisplay, board.toString());
 	}
+	
+	@Test
+	public void testDisplayInitialBoard() {
+		Board board = new Board();
+		Player player1 = new Player(Color.BLACK);
+		Player player2 = new Player(Color.WHITE);
+		
+		board.initPieces(player1, player2);
+		String expectedDisplay = String.join(
+			Board.NEW_LINE,
+			"  A B C D E F G H",
+			"8 5 4 3 1 2 3 4 5",
+			"7 6 6 6 6 6 6 6 6",
+			"6                ",
+			"5                ",
+			"4                ",
+			"3                ",
+			"2 6 6 6 6 6 6 6 6",
+			"1 5 4 3 2 1 3 4 5"
+		);
+		
+		assertEquals(expectedDisplay, board.toString());
+	}
 }
