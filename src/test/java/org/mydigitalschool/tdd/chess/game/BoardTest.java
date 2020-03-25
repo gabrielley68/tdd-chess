@@ -13,12 +13,11 @@ public class BoardTest {
 		
 	}
 	
-	@Test
+	@Test(expected = OutOfBoardException.class)
 	public void testSetPieceOutsideBoard() {
 		Board board = new Board();
 		Piece pawn = new Pawn();
 		board.setPiece(-1, 12, pawn);
-		
 	}
 	
 	@Test
